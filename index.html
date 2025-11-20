@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kiosco de 3 URLs</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Oculta barras de desplazamiento */
+        }
+        #kioskFrame {
+            width: 100%;
+            height: 100%;
+            border: none; /* Oculta el borde del marco */
+        }
+    </style>
+</head>
+<body>
+
+<iframe id="kioskFrame" src="" allowfullscreen></iframe>
+
+<script>
+    // Configura tus 3 URLs aquí
+    const urls = [
+        "https://www.bci.cl", 
+        "https://www.bci.cl/corporativo/hazlo-en-linea/inicio-privado", 
+        "https://www.bci.cl/corporativo/hazlo-en-linea/inicio-publico"  
+    ];
+    
+    // Intervalo de rotación en milisegundos (ej: 15 segundos)
+    const intervaloMs = 15000; 
+
+    let indiceActual = 0;
+    const frame = document.getElementById('kioskFrame');
+
+    function rotarURLs() {
+        // Carga la URL actual
+        frame.src = urls[indiceActual]; 
+        
+        // Mueve al siguiente índice (vuelve a 0 si llega al final)
+        indiceActual = (indiceActual + 1) % urls.length;
+        
+        // Vuelve a llamar a la función después del intervalo
+        setTimeout(rotarURLs, intervaloMs); 
+    }
+
+    // Inicia la rotación al cargar la página
+    document.addEventListener("DOMContentLoaded", rotarURLs);
+</script>
+
+</body>
+</html>
